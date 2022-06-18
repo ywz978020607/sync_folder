@@ -1,1 +1,1 @@
-C:\\Users\\W\\Desktop\\folder\\gitfolder
+C:\Users\W\Desktop\folder\gitfolder
