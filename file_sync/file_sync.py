@@ -1,10 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from sqlite3 import Timestamp
-import sys
 import time
-import ntpath
 import os
 import re
 import platform
@@ -68,7 +65,8 @@ if __name__ == "__main__":
 
     try:
         while True:
-            time.sleep(1)
+            time.sleep(5)
+            os.system("echo {} > {}".format(time.asctime(time.localtime(time.time())), os.path.join(DIR_FOR_GIT, "run.txt")))
     except KeyboardInterrupt:
         observer.stop()
     observer.join()
