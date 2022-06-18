@@ -26,8 +26,12 @@ finally:
     f.close()
 
 class FileChangeHandler(FileSystemEventHandler):
-    timer = None
-    push_set = set()
+    def __init__(self) -> None:
+        super().__init__()
+        self.timer = None
+        self.push_set = set()
+        for SYNC_PATH in SYNC_FOLDER_LIST:
+            self.push_set.add((SYNC_PATH, "initrefresh"))
     def on_any_event(self, event):
         # 先判断是否有效
         print(event.event_type, event.src_path)
