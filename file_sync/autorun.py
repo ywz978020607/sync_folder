@@ -27,8 +27,7 @@ class Auto_Run():
                     self.run()
         except KeyboardInterrupt as e:
             print("检测到CTRL+C，准备退出程序!")
-
-    #            self.p.kill()                   #检测到CTRL+C时，kill掉CMD中启动的exe或者jar程序
+            self.p.kill()                   #检测到CTRL+C时，kill掉CMD中启动的exe或者jar程序
 
     def run(self):
         if self.ext == ".py":
