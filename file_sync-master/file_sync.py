@@ -33,7 +33,7 @@ class FileChangeHandler(FileSystemEventHandler):
     def on_any_event(self, event):
         if self.timer:
             self.timer.cancel()
-        self.timer = threading.Timer(0.2, self.checkSnapshot) #延后
+        self.timer = threading.Timer(3, self.checkSnapshot) #延后
         self.last_event = event
         self.timer.start()
     def checkSnapshot(self):
