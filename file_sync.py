@@ -13,7 +13,8 @@ from watchdog.events import FileSystemEventHandler
 import threading
 
 # git root path for files to push to remote
-DIR_FOR_GIT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# DIR_FOR_GIT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DIR_FOR_GIT = os.path.dirname(os.path.abspath(__file__))
 
 # folders to synchronize
 SYNC_FOLDER_LIST = []

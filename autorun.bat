@@ -1,1 +1,1 @@
-pythonw C:\Users\W\Desktop\folder\gitfolder\autorun.py
+python C:\Users\W\Desktop\folder\gitfolder\autorun.py
