@@ -27,32 +27,37 @@ finally:
 
 class FileChangeHandler(FileSystemEventHandler):
     timer = None
+    push_set = set()
     def on_any_event(self, event):
-        if self.timer:
-            self.timer.cancel()
-        self.timer = threading.Timer(3, self.checkSnapshot) #延后
-        self.last_event = event
-        self.timer.start()
-    def checkSnapshot(self):
-        # print(self.last_event.event_type, self.last_event.src_path)
-        src_path = self.last_event.src_path.replace('\\','/')
+        # 先判断是否有效
+        print(event.event_type, event.src_path)
+        src_path = event.src_path.replace('\\','/')
         for SYNC_PATH in SYNC_FOLDER_LIST:
             if SYNC_PATH in src_path and ".git" not in src_path: #排除.git
-                os.chdir(SYNC_PATH)
-                git_add_cmd = "git add -A"
-                git_commit_cmd = "git commit -m " + re.escape("Update "+os.path.basename(src_path))
-                if platform.system() == "Windows":
-                    git_commit_cmd = "git commit -m Update."
-                git_pull_cmd = "git pull origin master"
-                git_push_cmd = "git push origin master"
-                call(
-                    git_add_cmd + "&&" +
-                    git_commit_cmd + "&&" +
-                    git_pull_cmd + "&&" +
-                    git_push_cmd,
-                    shell=True
-                )
-                break
+                # do push and delay
+                if self.timer:
+                    self.timer.cancel()
+                self.timer = threading.Timer(3, self.checkSnapshot) #延后
+                self.push_set.add((SYNC_PATH, src_path))
+                self.timer.start()
+
+    def checkSnapshot(self):
+        while len(self.push_set) > 0:
+            SYNC_PATH, src_path = self.push_set.pop()
+            os.chdir(SYNC_PATH)
+            git_add_cmd = "git add -A"
+            git_commit_cmd = "git commit -m " + re.escape("Update "+os.path.basename(src_path))
+            if platform.system() == "Windows":
+                git_commit_cmd = "git commit -m Update."
+            git_pull_cmd = "git pull origin master"
+            git_push_cmd = "git push origin master"
+            call(
+                git_add_cmd + "&&" +
+                git_commit_cmd + "&&" +
+                git_pull_cmd + "&&" +
+                git_push_cmd,
+                shell=True
+            )
 
 if __name__ == "__main__":
     observer = Observer()
