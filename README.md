@@ -17,6 +17,7 @@ python3 file_sync.py
 ```
 
 ## 状态判断
+查看run.txt
 
 
 ## Refer
