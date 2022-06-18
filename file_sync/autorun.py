@@ -35,8 +35,7 @@ class Auto_Run():
             print('start OK!')
             # self.p = subprocess.Popen(['python', '%s' % self.cmd], stdin=sys.stdin, stdout=sys.stdout,
             #                           stderr=sys.stderr, shell=False)
-            self.p = subprocess.Popen(['pythonw', '%s' % self.cmd], stdin=sys.stdin, stdout=sys.stdout,
-                                      stderr=sys.stderr, shell=False)
+            self.p = subprocess.Popen(['pythonw', '%s' % self.cmd], shell=False)
         else:
             pass
 
