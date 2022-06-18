@@ -66,7 +66,8 @@ if __name__ == "__main__":
     try:
         while True:
             time.sleep(5)
-            os.system("echo {} > {}".format(time.asctime(time.localtime(time.time())), os.path.join(DIR_FOR_GIT, "run.txt")))
+            with open(os.path.join(DIR_FOR_GIT, "run.txt"),"w") as f:
+                f.write(time.asctime(time.localtime(time.time()))) 
     except KeyboardInterrupt:
         observer.stop()
     observer.join()

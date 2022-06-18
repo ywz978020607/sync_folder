@@ -16,6 +16,8 @@ python3 file_sync.py
 # linux： 封装为sh等 
 ```
 
+## 状态判断
+
 
 ## Refer
 https://github.com/iWoz/file_sync 特定文件同步
