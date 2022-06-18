@@ -29,7 +29,9 @@ finally:
 class FileChangeHandler(FileSystemEventHandler):
     def __init__(self) -> None:
         super().__init__()
-        self.timer = None
+        # self.timer = None
+        self.timer = threading.Timer(3, self.checkSnapshot) #延后
+        self.timer.start()
         self.push_set = set()
         for SYNC_PATH in SYNC_FOLDER_LIST:
             self.push_set.add((SYNC_PATH, "initrefresh"))
