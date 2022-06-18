@@ -17,8 +17,7 @@ python3 file_sync.py
 ```
 
 ## 状态判断
-运行后会自动在根目录创建run.txt并显示最近刷新时间-5s一刷新(已添加至.gitignore)  
-(建议同步文件夹设置为二级目录，否则run.txt依然会触发事件)
+运行后会自动在根目录创建run.txt并显示最近阻塞进程刷新时间-5s一刷新(run.txt已添加至.gitignore不会频繁更库, 但建议同步文件夹设置为二级目录，否则run.txt依然会触发事件)
 
 ## Refer
 https://github.com/iWoz/file_sync 特定文件同步
