@@ -5,8 +5,9 @@ import os
 sys.path.append(".")
 
 TIME = 1  # 程序状态检测间隔（单位：分钟）
-CMD = "file_sync.py"  # 需要执行程序的绝对路径，支持jar 如：D:\\calc.exe 或者D:\\test.jar
 
+CMD = os.path.join(os.path.dirname(os.path.abspath(__file__)),"file_sync.py")  # 需要执行程序的绝对路径，支持jar 如：D:\\calc.exe 或者D:\\test.jar
+print(CMD)
 
 class Auto_Run():
     def __init__(self, sleep_time, cmd):

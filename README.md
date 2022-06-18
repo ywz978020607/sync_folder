@@ -10,6 +10,8 @@ C:\Users\W\Desktop\folder\gitfolder\folder1
 ```
 cd file_sync
 python3 file_sync.py
+# 自动监控运维版-使用autorun.py代替file_sync.py
+python3 autorun.py
 # win
 # 可封装成.bat: pythonw  __YOUR_DIR__\file_sync.py
 # 或使用pyinstaller打包为exe再创建快捷方式 pyinstaller -F -w file_sync.py
