@@ -17,7 +17,7 @@ python3 file_sync.py
 ```
 
 ## 状态判断
-查看run.txt
+查看run.txt(已添加至.gitignore)
 
 
 ## Refer
