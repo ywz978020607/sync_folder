@@ -37,10 +37,10 @@ class FileChangeHandler(FileSystemEventHandler):
         self.last_event = event
         self.timer.start()
     def checkSnapshot(self):
-        print(self.last_event.event_type, self.last_event.src_path)
+        # print(self.last_event.event_type, self.last_event.src_path)
         src_path = self.last_event.src_path.replace('\\','/')
         for SYNC_PATH in SYNC_FOLDER_LIST:
-            if SYNC_PATH in src_path:
+            if SYNC_PATH in src_path and ".git" not in src_path: #排除.git
                 os.chdir(SYNC_PATH)
                 git_add_cmd = "git add -A"
                 git_commit_cmd = "git commit -m " + re.escape("Update "+os.path.basename(src_path))
